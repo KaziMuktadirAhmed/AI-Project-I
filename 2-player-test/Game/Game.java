@@ -13,13 +13,7 @@ public class Game {
     }
 
     private void turn (int player) {
-        int place_tile = -1;
-        Scanner scan_input = new Scanner(System.in);
-        place_tile = scan_input.nextInt();
-
-        while (!checkInputValidity(place_tile))
-            place_tile = scan_input.nextInt();
-
+        int place_tile = inputPrompt(player);
         for(int i=0; i<6; i++) {
             if (i == 5) {
                 if(board[i][place_tile] == 0)
@@ -29,6 +23,22 @@ public class Game {
                     board[i][place_tile-1] = player;
             }
         }
+    }
+
+    private int inputPrompt (int player) {
+        int place_tile = -1;
+        Scanner scan_input = new Scanner(System.in);
+
+        System.out.print("Move for player" + player +": ");
+        place_tile = scan_input.nextInt();
+
+        while (!checkInputValidity(place_tile)) {
+            System.out.println("Invalid move. Please enter a valid move.");
+            System.out.print("Move for player" + player +": ");
+            place_tile = scan_input.nextInt();
+        }
+
+        return place_tile;
     }
 
     private boolean chekForDraw () {
@@ -78,6 +88,15 @@ public class Game {
 
     public void showBoard() {
         String output = "";
+
+        System.out.println("4-Connect");
+        System.out.println("=========");
+
+        for(int i=0; i<7; i++) output += (i + " ");
+        output += "\n";
+        for(int i=0; i<7; i++) output += "==";
+        output += "\n";
+
         for (int i=0; i<6; ++i) {
             String line = "";
             for (int j=0; j<7; ++j) {
