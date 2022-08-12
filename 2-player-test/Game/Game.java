@@ -4,9 +4,9 @@ import java.util.Scanner;
 
 public class Game {
     private final int[][] board = new int[6][7];
-
-    private static final int player_1 = 1;
-    private static final int player_2 = 2;
+//
+//    private static final int player_1 = 1;
+//    private static final int player_2 = 2;
 
     public void play () {
         boolean play_game = true;
@@ -91,8 +91,10 @@ public class Game {
     private int hasWinner () {
         if(checkBoardHorizontally() != -1)
             return checkBoardHorizontally();
-        else if (checkBoradVertically() != -1) {
-            return  checkBoradVertically();
+        else if (checkBordVertically() != -1)
+            return checkBordVertically();
+        else if (checkBordDiagonallyPrimary() != -1) {
+            return checkBordDiagonallyPrimary();
         }
         return -1;
     }
@@ -114,7 +116,7 @@ public class Game {
         return -1;
     }
 
-    private int checkBoradVertically() {
+    private int checkBordVertically() {
         for(int j=0; j<7; j++) {
             int match_count = 0;
             for (int i=0; i<6; i++) {
@@ -126,6 +128,27 @@ public class Game {
                 } else {
                     match_count = 0;
                 }
+            }
+        }
+        return -1;
+    }
+
+    private int checkBordDiagonallyPrimary() {
+        for(int itr=-2; itr<4; itr++) {
+            int row = Math.abs(itr), col = 0;
+            int match_count = 0;
+            while(row < 6 && col < 7) {
+                if(board[row][col] != 0 && row > 0 && col > 0 && board[row][col] == board[row-1][col-1]) {
+                    match_count++;
+                    System.out.println("count: " + match_count +" row: "+row+" col: "+col+" player: "+board[row][col]);
+                    if(match_count >= 3){
+                        return board[row][col];
+                    }
+                } else {
+                    match_count = 0;
+                }
+                col++;
+                row++;
             }
         }
         return -1;
