@@ -12,16 +12,22 @@ public class Game {
         boolean play_game = true;
         int player_instance = 1;
         while (play_game) {
-            turn(player_instance);
-
             int winner = hasWinner();
             if(winner != -1) {
                 System.out.println(winner + " is the winner.");
                 play_game = false;
                 continue;
             }
-            
-            player_instance = ((player_instance+1)%2)+1;
+
+            if(checkForDraw()) {
+                System.out.println("Draw.");
+                play_game = false;
+                continue;
+            }
+
+            if(player_instance == 1) player_instance = 2;
+            else if (player_instance == 2) player_instance = 1;
+            turn(player_instance);
         }
     }
 
@@ -29,11 +35,16 @@ public class Game {
         int place_tile = inputPrompt(player);
         for(int i=0; i<6; i++) {
             if (i == 5) {
-                if(board[i][place_tile] == 0)
+                if(board[i][place_tile] == 0) {
                     board[i][place_tile] = player;
-            } else {
-                if(board[i][place_tile] != 0)
-                    board[i][place_tile-1] = player;
+                    break;
+                }
+            }
+
+            if(board[i][place_tile] != 0) {
+                board[i-1][place_tile] = player;
+                System.out.println("index: " + i + " " + place_tile);
+                break;
             }
         }
     }
@@ -56,7 +67,7 @@ public class Game {
         return place_tile;
     }
 
-    private boolean chekForDraw () {
+    private boolean checkForDraw() {
         boolean is_draw = true;
         for(int j=0; j<7; j++) {
             if(checkInputValidity(j)) {
