@@ -13,6 +13,8 @@ public class Game {
         int player_instance = 2;
 
         while (play_game) {
+            showBoard();
+
             int winner = hasWinner();
             if(winner != -1) {
                 System.out.println(winner + " is the winner.");
@@ -27,7 +29,8 @@ public class Game {
             }
 
             if(player_instance == 1) player_instance = 2;
-            else if (player_instance == 2) player_instance = 1;
+            else player_instance = 1;
+
             turn(player_instance);
         }
     }
@@ -54,12 +57,12 @@ public class Game {
         int place_tile = -1;
         Scanner scan_input = new Scanner(System.in);
 
-        showBoard();
+//        showBoard();
         System.out.print("Move for player" + player +": ");
         place_tile = scan_input.nextInt();
 
         while (!checkInputValidity(place_tile)) {
-            showBoard();
+//            showBoard();
             System.out.println("Invalid move. Please enter a valid move.");
             System.out.print("Move for player" + player +": ");
             place_tile = scan_input.nextInt();
@@ -102,7 +105,7 @@ public class Game {
             for (int j=0; j<7; j++) {
                 if(board[i][j] != 0 && j > 0 && board[i][j] == board[i][j-1]) {
                     match_count++;
-                    if(match_count == 4) {
+                    if(match_count >= 3) {
                         return board[i][j];
                     }
                 } else {
