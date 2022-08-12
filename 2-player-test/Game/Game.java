@@ -9,7 +9,7 @@ public class Game {
     private static final int player_2 = 2;
 
     public void play () {
-        while (false) {}
+
     }
 
     private void turn (int player) {
@@ -31,13 +31,24 @@ public class Game {
         }
     }
 
+    private boolean chekForDraw () {
+        boolean is_draw = true;
+        for(int j=0; j<7; j++) {
+            if(checkInputValidity(j)) {
+                is_draw = false;
+                break;
+            }
+        }
+        return is_draw;
+    }
+
     private boolean checkInputValidity (int input) {
-        boolean isValidInput = true;
+        boolean is_valid_input = true;
         if(input < 0 || input > 6)
-            isValidInput = false;
+            is_valid_input = false;
         else if (board[0][input] != 0)
-            isValidInput = false;
-        return isValidInput;
+            is_valid_input = false;
+        return is_valid_input;
     }
 
     private int hasWinner () {
