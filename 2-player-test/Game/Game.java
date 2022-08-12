@@ -9,7 +9,11 @@ public class Game {
     private static final int player_2 = 2;
 
     public void play () {
+        boolean play_game = true;
+        int player_instance = 1;
+        while (play_game) {
 
+        }
     }
 
     private void turn (int player) {
@@ -29,10 +33,12 @@ public class Game {
         int place_tile = -1;
         Scanner scan_input = new Scanner(System.in);
 
+        showBoard();
         System.out.print("Move for player" + player +": ");
         place_tile = scan_input.nextInt();
 
         while (!checkInputValidity(place_tile)) {
+            showBoard();
             System.out.println("Invalid move. Please enter a valid move.");
             System.out.print("Move for player" + player +": ");
             place_tile = scan_input.nextInt();
