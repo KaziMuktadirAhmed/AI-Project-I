@@ -89,15 +89,12 @@ public class Game {
     }
 
     private int hasWinner () {
-        int winner = -1;
-
-        // horizontal 4 tile check
-//        winner = checkBoardHorizontally();
-
-        // vertical 4 tile check
-        winner = checkBoradVertically();
-        
-        return winner;
+        if(checkBoardHorizontally() != -1)
+            return checkBoardHorizontally();
+        else if (checkBoradVertically() != -1) {
+            return  checkBoradVertically();
+        }
+        return -1;
     }
 
     private int checkBoardHorizontally() {
