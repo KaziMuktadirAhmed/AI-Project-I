@@ -12,7 +12,16 @@ public class Game {
         boolean play_game = true;
         int player_instance = 1;
         while (play_game) {
+            turn(player_instance);
 
+            int winner = hasWinner();
+            if(winner != -1) {
+                System.out.println(winner + " is the winner.");
+                play_game = false;
+                continue;
+            }
+            
+            player_instance = ((player_instance+1)%2)+1;
         }
     }
 
