@@ -93,9 +93,9 @@ public class Game {
             return checkBoardHorizontally();
         else if (checkBordVertically() != -1)
             return checkBordVertically();
-        else if (checkBordDiagonallyPrimary() != -1) {
-            return checkBordDiagonallyPrimary();
-        }
+//        else if (checkBordDiagonallyPrimary() != -1) {
+//            return checkBordDiagonallyPrimary();
+//        }
         return -1;
     }
 
