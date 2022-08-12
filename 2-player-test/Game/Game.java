@@ -1,5 +1,7 @@
 package Game;
 
+import java.util.Scanner;
+
 public class Game {
     private int board[][] = new int[6][7];
 
@@ -8,12 +10,39 @@ public class Game {
 
     public void play () {}
 
+    private void turn (int player) {
+        int place_tile = -1;
+        Scanner scan_input = new Scanner(System.in);
+        place_tile = scan_input.nextInt();
+
+        while (!checkInputValidity(place_tile))
+            place_tile = scan_input.nextInt();
+
+        for(int i=0; i<6; i++) {
+            if (i == 5) {
+                if(board[i][place_tile] == 0)
+                    board[i][place_tile] = player;
+            } else {
+                if(board[i][place_tile] != 0)
+                    board[i][place_tile-1] = player;
+            }
+        }
+    }
+
+    private boolean checkInputValidity (int input) {
+        boolean isValidInput = true;
+        if(input < 0 || input > 6)
+            isValidInput = false;
+        else if (board[0][input] != 0)
+            isValidInput = false;
+        return isValidInput;
+    }
+
     private int hasWinner () {
         int winner = -1;
 
         // horizontal 4 tile check
         winner = checkBoardHorizontally();
-//        if (board1 != null) return board1;
         return winner;
     }
 
@@ -26,8 +55,7 @@ public class Game {
                     if(match_count == 4) {
                         return board[i][j];
                     }
-                }
-                else {
+                } else {
                     match_count = 0;
                 }
             }
