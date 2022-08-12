@@ -3,12 +3,14 @@ package Game;
 import java.util.Scanner;
 
 public class Game {
-    private int board[][] = new int[6][7];
+    private final int[][] board = new int[6][7];
 
     private static final int player_1 = 1;
     private static final int player_2 = 2;
 
-    public void play () {}
+    public void play () {
+        while (false) {}
+    }
 
     private void turn (int player) {
         int place_tile = -1;
