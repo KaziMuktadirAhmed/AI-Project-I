@@ -55,8 +55,8 @@ public class Game {
     private int inputPrompt (int player) {
         int place_tile = -1;
         Scanner scan_input = new Scanner(System.in);
-        
-        System.out.print("Move for player" + player +": ");
+
+        System.out.print("Move for player-" + player +": ");
         place_tile = scan_input.nextInt();
 
         while (!checkInputValidity(place_tile)) {
@@ -92,7 +92,11 @@ public class Game {
         int winner = -1;
 
         // horizontal 4 tile check
-        winner = checkBoardHorizontally();
+//        winner = checkBoardHorizontally();
+
+        // vertical 4 tile check
+        winner = checkBoradVertically();
+        
         return winner;
     }
 
@@ -101,6 +105,23 @@ public class Game {
             int match_count = 0;
             for (int j=0; j<7; j++) {
                 if(board[i][j] != 0 && j > 0 && board[i][j] == board[i][j-1]) {
+                    match_count++;
+                    if(match_count >= 3) {
+                        return board[i][j];
+                    }
+                } else {
+                    match_count = 0;
+                }
+            }
+        }
+        return -1;
+    }
+
+    private int checkBoradVertically() {
+        for(int j=0; j<7; j++) {
+            int match_count = 0;
+            for (int i=0; i<6; i++) {
+                if(board[i][j] != 0 && i > 0 && board[i][j] == board[i-1][j]) {
                     match_count++;
                     if(match_count >= 3) {
                         return board[i][j];
