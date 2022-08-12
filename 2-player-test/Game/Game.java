@@ -10,7 +10,8 @@ public class Game {
 
     public void play () {
         boolean play_game = true;
-        int player_instance = 1;
+        int player_instance = 2;
+
         while (play_game) {
             int winner = hasWinner();
             if(winner != -1) {
