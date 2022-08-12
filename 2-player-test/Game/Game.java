@@ -47,7 +47,6 @@ public class Game {
 
             if(board[i][place_tile] != 0) {
                 board[i-1][place_tile] = player;
-                System.out.println("index: " + i + " " + place_tile);
                 break;
             }
         }
@@ -56,13 +55,11 @@ public class Game {
     private int inputPrompt (int player) {
         int place_tile = -1;
         Scanner scan_input = new Scanner(System.in);
-
-//        showBoard();
+        
         System.out.print("Move for player" + player +": ");
         place_tile = scan_input.nextInt();
 
         while (!checkInputValidity(place_tile)) {
-//            showBoard();
             System.out.println("Invalid move. Please enter a valid move.");
             System.out.print("Move for player" + player +": ");
             place_tile = scan_input.nextInt();
