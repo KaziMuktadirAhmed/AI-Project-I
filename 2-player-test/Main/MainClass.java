@@ -21,15 +21,15 @@ public class MainClass {
             int row, col;
             if(itr < 1) {
                 row = -1 * itr;
-                col = 0;
+                col = 6;
             } else {
                 row = 0;
-                col = itr;
+                col = 7 - itr - 1;
             }
-            while(row < 6 && col < 7) {
+            while(row < 6 && col > -1) {
                 System.out.println("row: " + row + " col: " + col);
 //               checking the iteration index for the loop
-                col++;
+                col--;
                 row++;
             }
         }

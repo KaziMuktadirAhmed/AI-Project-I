@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Game {
     private final int[][] board = new int[6][7];
-//
+
 //    private static final int player_1 = 1;
 //    private static final int player_2 = 2;
 
@@ -93,10 +93,12 @@ public class Game {
             return checkBoardHorizontally();
         else if (checkBordVertically() != -1)
             return checkBordVertically();
-        else if (checkBordDiagonallyPrimary() != -1) {
+        else if (checkBordDiagonallyPrimary() != -1)
             return checkBordDiagonallyPrimary();
-        }
-        return -1;
+        else if (checkBordDiagonallySecondary() != -1)
+            return checkBordDiagonallySecondary();
+        else
+            return -1;
     }
 
     private int checkBoardHorizontally() {
@@ -147,7 +149,6 @@ public class Game {
             while(row < 6 && col < 7) {
                 if(board[row][col] != 0 && row > 0 && col > 0 && board[row][col] == board[row-1][col-1]) {
                     match_count++;
-//                    System.out.println("count: " + match_count +" row: "+row+" col: "+col+" player: "+board[row][col]);
                     if(match_count >= 3){
                         return board[row][col];
                     }
@@ -155,6 +156,33 @@ public class Game {
                     match_count = 0;
                 }
                 col++;
+                row++;
+            }
+        }
+        return -1;
+    }
+
+    private int checkBordDiagonallySecondary() {
+        for(int itr=-2; itr<4; itr++) {
+            int row, col;
+            if(itr < 1) {
+                row = -1 * itr;
+                col = 6;
+            } else {
+                row = 0;
+                col = 7 - itr - 1;
+            }
+            int match_count = 0;
+            while(row < 6 && col > -1) {
+                if(board[row][col] != 0 && row > 0 && col < 6 && board[row][col] == board[row-1][col+1]) {
+                    match_count++;
+                    if(match_count >= 3){
+                        return board[row][col];
+                    }
+                } else {
+                    match_count = 0;
+                }
+                col--;
                 row++;
             }
         }
