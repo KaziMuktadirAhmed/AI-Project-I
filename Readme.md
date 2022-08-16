@@ -7,10 +7,10 @@ Project is build in java. test folder is a console based 2-player 1v1 Connect-4 
 2. Run the main class under the Main package
 
 ### player-vs-ai-test
-<pre>
+<p>
   This module is basically the same logic running in background for evalutaion and determining a winner in the game.
   Player will be a human user giving inputs for the game as player 1.
   The AI will then give response as the opponet as player 2.
   AI will use MinMax algorithm to determine the best move for the situation.
   Alpha-Beta pruning method will be used for optimized tree search.
-</pre>
+</p>
