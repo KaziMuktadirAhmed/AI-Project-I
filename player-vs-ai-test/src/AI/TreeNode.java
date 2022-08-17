@@ -20,16 +20,15 @@ public class TreeNode {
         return alpha;
     }
 
-    public void setAlpha(int alpha) {
-        this.alpha = alpha;
-    }
-
     public int beta() {
         return beta;
     }
 
-    public void setBeta(int beta) {
-        this.beta = beta;
+    public void setAlphaOrBeta(int newVal) {
+        if(max_or_min)
+            this.alpha = newVal;
+        else
+            this.beta = newVal;
     }
 
     public int utility_score() {
