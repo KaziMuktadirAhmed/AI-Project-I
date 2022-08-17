@@ -1,7 +1,5 @@
 package AI;
 
-import java.util.Scanner;
-
 public class GameTree {
     public TreeNode Root;
 
@@ -12,11 +10,6 @@ public class GameTree {
 }
 
 class GameLogic {
-//    private final int[][] board = new int[6][7];
-
-//    private static final int player_1 = 1;
-//    private static final int player_2 = 2;
-
     public int[][] turn (int place_tile, int player, int[][] board) {
         for(int i=0; i<6; i++) {
             if (i == 5) {
