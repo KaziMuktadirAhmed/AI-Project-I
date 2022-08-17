@@ -23,7 +23,7 @@ public class TreeNode {
     public int beta() {
         return beta;
     }
-    
+
     public void setAlpha(int alpha) {
         this.alpha = alpha;
     }
