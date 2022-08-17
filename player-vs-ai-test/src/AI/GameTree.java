@@ -12,40 +12,12 @@ public class GameTree {
 }
 
 class GameLogic {
-    private final int[][] board = new int[6][7];
+//    private final int[][] board = new int[6][7];
 
 //    private static final int player_1 = 1;
 //    private static final int player_2 = 2;
 
-    public void play () {
-        boolean play_game = true;
-        int player_instance = 2;
-
-        while (play_game) {
-            showBoard();
-
-            int winner = hasWinner();
-            if(winner != -1) {
-                System.out.println(winner + " is the winner.");
-                play_game = false;
-                continue;
-            }
-
-            if(checkForDraw()) {
-                System.out.println("Draw.");
-                play_game = false;
-                continue;
-            }
-
-            if(player_instance == 1) player_instance = 2;
-            else player_instance = 1;
-
-            turn(player_instance);
-        }
-    }
-
-    private void turn (int player) {
-        int place_tile = inputPrompt(player);
+    public int[][] turn (int place_tile, int player, int[][] board) {
         for(int i=0; i<6; i++) {
             if (i == 5) {
                 if(board[i][place_tile] == 0) {
@@ -59,28 +31,13 @@ class GameLogic {
                 break;
             }
         }
+        return board;
     }
 
-    private int inputPrompt (int player) {
-        int place_tile = -1;
-        Scanner scan_input = new Scanner(System.in);
-
-        System.out.print("Move for player-" + player +": ");
-        place_tile = scan_input.nextInt();
-
-        while (!checkInputValidity(place_tile)) {
-            System.out.println("Invalid move. Please enter a valid move.");
-            System.out.print("Move for player" + player +": ");
-            place_tile = scan_input.nextInt();
-        }
-
-        return place_tile;
-    }
-
-    private boolean checkForDraw() {
+    public boolean checkForDraw(int[][] board) {
         boolean is_draw = true;
         for(int j=0; j<7; j++) {
-            if(checkInputValidity(j)) {
+            if(checkInputValidity(j, board)) {
                 is_draw = false;
                 break;
             }
@@ -88,7 +45,7 @@ class GameLogic {
         return is_draw;
     }
 
-    private boolean checkInputValidity (int input) {
+    public boolean checkInputValidity (int input, int[][] board) {
         boolean is_valid_input = true;
         if(input < 0 || input > 6)
             is_valid_input = false;
@@ -97,20 +54,20 @@ class GameLogic {
         return is_valid_input;
     }
 
-    private int hasWinner () {
-        if(checkBoardHorizontally() != -1)
-            return checkBoardHorizontally();
-        else if (checkBordVertically() != -1)
-            return checkBordVertically();
-        else if (checkBordDiagonallyPrimary() != -1)
-            return checkBordDiagonallyPrimary();
-        else if (checkBordDiagonallySecondary() != -1)
-            return checkBordDiagonallySecondary();
+    public int hasWinner (int[][] board) {
+        if(checkBoardHorizontally(board) != -1)
+            return checkBoardHorizontally(board);
+        else if (checkBordVertically(board) != -1)
+            return checkBordVertically(board);
+        else if (checkBordDiagonallyPrimary(board) != -1)
+            return checkBordDiagonallyPrimary(board);
+        else if (checkBordDiagonallySecondary(board) != -1)
+            return checkBordDiagonallySecondary(board);
         else
             return -1;
     }
 
-    private int checkBoardHorizontally() {
+    private int checkBoardHorizontally(int[][] board) {
         for(int i=0; i<6; i++) {
             int match_count = 0;
             for (int j=0; j<7; j++) {
@@ -127,7 +84,7 @@ class GameLogic {
         return -1;
     }
 
-    private int checkBordVertically() {
+    private int checkBordVertically(int[][] board) {
         for(int j=0; j<7; j++) {
             int match_count = 0;
             for (int i=0; i<6; i++) {
@@ -144,7 +101,7 @@ class GameLogic {
         return -1;
     }
 
-    private int checkBordDiagonallyPrimary() {
+    private int checkBordDiagonallyPrimary(int[][] board) {
         for(int itr=-2; itr<4; itr++) {
             int row, col;
             if(itr < 1) {
@@ -171,7 +128,7 @@ class GameLogic {
         return -1;
     }
 
-    private int checkBordDiagonallySecondary() {
+    private int checkBordDiagonallySecondary(int[][] board) {
         for(int itr=-2; itr<4; itr++) {
             int row, col;
             if(itr < 1) {
@@ -196,26 +153,5 @@ class GameLogic {
             }
         }
         return -1;
-    }
-
-    public void showBoard() {
-        String output = "";
-
-        System.out.println("4-Connect");
-        System.out.println("=========");
-
-        for(int i=0; i<7; i++) output += (i + " ");
-        output += "\n";
-        for(int i=0; i<7; i++) output += "==";
-        output += "\n";
-
-        for (int i=0; i<6; ++i) {
-            String line = "";
-            for (int j=0; j<7; ++j) {
-                line += (board[i][j] + " ");
-            }
-            output += (line + "\n");
-        }
-        System.out.println(output);
     }
 }
