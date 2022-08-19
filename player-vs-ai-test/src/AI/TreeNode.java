@@ -44,24 +44,7 @@ public class TreeNode {
         this.utility_score = utility_score;
     }
 
-    public void showBoard() {
-        String output = "";
-
-        System.out.println("4-Connect");
-        System.out.println("=========");
-
-        for(int i=0; i<7; i++) output += (i + " ");
-        output += "\n";
-        for(int i=0; i<7; i++) output += "==";
-        output += "\n";
-
-        for (int i=0; i<6; ++i) {
-            String line = "";
-            for (int j=0; j<7; ++j) {
-                line += (board[i][j] + " ");
-            }
-            output += (line + "\n");
-        }
-        System.out.println(output);
+    public int[][] getBoard() {
+        return this.board;
     }
 }
