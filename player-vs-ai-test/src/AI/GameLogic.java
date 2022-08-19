@@ -1,7 +1,7 @@
 package AI;
 
 public class GameLogic {
-    public int[][] turn(int place_tile, int player, int[][] board) {
+    public void turn(int place_tile, int player, int[][] board) {
         for (int i = 0; i < 6; i++) {
             if (i == 5) {
                 if (board[i][place_tile] == 0) {
@@ -15,7 +15,6 @@ public class GameLogic {
                 break;
             }
         }
-        return board;
     }
 
     public boolean checkForDraw(int[][] board) {
@@ -137,5 +136,34 @@ public class GameLogic {
             }
         }
         return -1;
+    }
+
+    public void showBoard(int[][] board) {
+        String output = "";
+
+        System.out.println("4-Connect");
+        System.out.println("=========");
+
+        for(int i=0; i<7; i++) output += (i + " ");
+        output += "\n";
+        for(int i=0; i<7; i++) output += "==";
+        output += "\n";
+
+        for (int i=0; i<6; ++i) {
+            String line = "";
+            for (int j=0; j<7; ++j) {
+                line += (board[i][j] + " ");
+            }
+            output += (line + "\n");
+        }
+        System.out.println(output);
+    }
+
+    public void copyBoard(int[][] source, int[][] dest) {
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 7; j++) {
+                dest[i][j] = source[i][j];
+            }
+        }
     }
 }
