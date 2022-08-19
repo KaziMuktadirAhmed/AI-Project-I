@@ -16,6 +16,10 @@ public class TreeNode {
         this.board = board;
     }
 
+    public int[][] getBoard() {
+        return this.board;
+    }
+
     public void setBoard(int[][] board) {
         this.board = board;
     }
@@ -42,9 +46,5 @@ public class TreeNode {
 
     public void setUtilityScore(int utility_score) {
         this.utility_score = utility_score;
-    }
-
-    public int[][] getBoard() {
-        return this.board;
     }
 }
