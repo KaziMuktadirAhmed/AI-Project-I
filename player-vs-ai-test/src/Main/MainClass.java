@@ -17,5 +17,6 @@ public class MainClass {
     public static void test() {
         GameTree game_tree = new GameTree();
         game_tree.generateGameTree();
+        game_tree.printGameTree();
     }
 }

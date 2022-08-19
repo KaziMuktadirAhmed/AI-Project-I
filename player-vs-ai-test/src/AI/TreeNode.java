@@ -7,13 +7,13 @@ public class TreeNode {
     public boolean max_or_min;
     public ArrayList<TreeNode> childs = new ArrayList<>();
 
-    private int board[][];
+    private final int[][] board = new int[6][7];
     private int alpha = Integer.MIN_VALUE;
     private int beta = Integer.MAX_VALUE;
     private int utility_score;
 
     public TreeNode(int[][] board) {
-        this.board = board;
+        setBoard(board);
     }
 
     public int[][] getBoard() {
@@ -21,7 +21,9 @@ public class TreeNode {
     }
 
     public void setBoard(int[][] board) {
-        this.board = board;
+        for (int i = 0; i < 6; i++) {
+            System.arraycopy(board[i], 0, this.board[i], 0, 7);
+        }
     }
 
     public int alpha() {
