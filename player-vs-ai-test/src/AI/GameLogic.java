@@ -161,9 +161,7 @@ public class GameLogic {
 
     public void copyBoard(int[][] source, int[][] dest) {
         for (int i = 0; i < 6; i++) {
-            for (int j = 0; j < 7; j++) {
-                dest[i][j] = source[i][j];
-            }
+            System.arraycopy(source[i], 0, dest[i], 0, 7);
         }
     }
 }
