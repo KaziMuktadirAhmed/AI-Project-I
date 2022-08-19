@@ -1,12 +1,14 @@
 package AI;
 
-import java.util.Arrays;
-
 public class GameTree {
     GameLogic game_logic = new GameLogic();
     public TreeNode Root = new TreeNode(new int[6][7]);
 
-    public void generateGameTree() {
+    public GameTree() {
+        generateGameTree();
+    }
+
+    private void generateGameTree() {
         int[][] new_board = new int[6][7];
         for (int i = 0; i < 7; i++) {
             if(game_logic.checkInputValidity(i, Root.getBoard())) {
