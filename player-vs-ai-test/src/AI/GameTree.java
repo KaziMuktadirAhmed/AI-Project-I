@@ -19,6 +19,24 @@ public class GameTree {
         }
     }
 
+    private void generateChildNode(TreeNode node) {
+        int[][] new_board = new int[6][7];
+
+        if (canExpand(node.getBoard())) {
+            
+        }
+
+        for (int i = 0; i < 7; i++) {
+
+        }
+    }
+
+    private boolean canExpand(int[][] board) {
+        if (game_logic.hasWinner(board) != -1)
+            return false;
+        else return !game_logic.checkForDraw(board);
+    }
+
     public void printGameTree() {
         printNode(Root, "Root");
     }
