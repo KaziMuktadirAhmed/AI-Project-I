@@ -23,7 +23,9 @@ public class GameTree {
         int[][] new_board = new int[6][7];
 
         if (canExpand(node.getBoard())) {
-            
+            node.is_leaf = true;
+            // evaluate utility score
+            return;
         }
 
         for (int i = 0; i < 7; i++) {
