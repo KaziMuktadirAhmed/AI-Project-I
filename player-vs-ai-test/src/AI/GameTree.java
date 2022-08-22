@@ -10,10 +10,10 @@ public class GameTree {
     }
 
     private void generateGameTree() {
-        generateChildNode(Root);
+        generateChildren(Root);
     }
 
-    private void generateChildNode(TreeNode node) {
+    private void generateChildren(TreeNode node) {
         int[][] new_board = new int[6][7];
         if (!canExpand(node.getBoard()) || node.level == cut_off_depth) {
             node.is_leaf = true;
