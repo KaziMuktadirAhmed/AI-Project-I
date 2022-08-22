@@ -1,35 +1,31 @@
 package AI;
 
 public class GameTree {
+    private final int cut_off_depth = 12;
     GameLogic game_logic = new GameLogic();
-    public TreeNode Root = new TreeNode(new int[6][7]);
+    public TreeNode Root = new TreeNode(new int[6][7], 0);
 
     public GameTree() {
         generateGameTree();
     }
 
     private void generateGameTree() {
-        int[][] new_board = new int[6][7];
-        for (int i = 0; i < 7; i++) {
-            if(game_logic.checkInputValidity(i, Root.getBoard())) {
-                game_logic.copyBoard(Root.getBoard(), new_board);
-                game_logic.turn(i, 1, new_board);
-                Root.childs.add(new TreeNode(new_board));
-            }
-        }
+        generateChildNode(Root);
     }
 
     private void generateChildNode(TreeNode node) {
         int[][] new_board = new int[6][7];
-
-        if (canExpand(node.getBoard())) {
+        if (!canExpand(node.getBoard()) || node.level == cut_off_depth) {
             node.is_leaf = true;
             // evaluate utility score
             return;
         }
-
         for (int i = 0; i < 7; i++) {
-
+            if(game_logic.checkInputValidity(i, node.getBoard())) {
+                game_logic.copyBoard(node.getBoard(), new_board);
+                game_logic.turn(i, 1, new_board);
+                node.children.add(new TreeNode(new_board, node.level+1));
+            }
         }
     }
 
@@ -47,7 +43,7 @@ public class GameTree {
 //        String output = overhead;
         System.out.println(overhead+" "+node);
         game_logic.showBoard(node.getBoard());
-        for (TreeNode child: node.childs) {
+        for (TreeNode child: node.children) {
             printNode(child, overhead+"child");
         }
     }

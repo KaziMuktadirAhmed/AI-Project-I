@@ -4,16 +4,18 @@ import java.util.ArrayList;
 
 public class TreeNode {
     public boolean is_leaf = false;
+    public final int level;
     public boolean max_or_min;
-    public ArrayList<TreeNode> childs = new ArrayList<>();
+    public ArrayList<TreeNode> children = new ArrayList<>();
 
     private final int[][] board = new int[6][7];
     private int alpha = Integer.MIN_VALUE;
     private int beta = Integer.MAX_VALUE;
     private int utility_score;
 
-    public TreeNode(int[][] board) {
+    public TreeNode(int[][] board, int level) {
         setBoard(board);
+        this.level = level;
     }
 
     public int[][] getBoard() {
