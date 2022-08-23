@@ -10,7 +10,7 @@ public class AI {
     }
 
     public int playBoard(int[][] board, int player) throws FileNotFoundException {
-        int move = -1;
+        int move;
         GameTree tree = new GameTree(board, max_depth);
         move = MinMaxTreeTraverse(tree);
         return move;
