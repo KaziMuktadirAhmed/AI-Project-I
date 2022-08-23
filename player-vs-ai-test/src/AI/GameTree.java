@@ -17,6 +17,7 @@ public class GameTree {
         PrintStream output_file = new PrintStream(new FileOutputStream("output.txt"));
         System.setOut(output_file);
         generateChildren(Root);
+        System.out.println("end");
     }
 
     private void generateChildren(TreeNode node) {
@@ -50,6 +51,7 @@ public class GameTree {
     public void printNode(TreeNode node, String overhead) {
 //        String output = overhead;
         System.out.println(overhead+" "+node);
+        System.out.println(node.level);
         game_logic.showBoard(node.getBoard());
         for (TreeNode child: node.children) {
             printNode(child, overhead+"child");
