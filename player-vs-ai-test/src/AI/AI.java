@@ -1,10 +1,44 @@
 package AI;
 
+import java.io.FileNotFoundException;
+
 public class AI {
-    private int MinMaxTreeTraverse() {
+    private final int max_depth;
+
+    public AI(int max) {
+        this.max_depth = max;
+    }
+
+    public int playBoard(int[][] board, int player) throws FileNotFoundException {
+        int move = -1;
+        GameTree tree = new GameTree(board, max_depth);
+        move = MinMaxTreeTraverse(tree);
+        return move;
+    }
+
+    private int MinMaxTreeTraverse(GameTree tree) {
         int move = -2;
+        int max_util = dfsTraverse(tree.Root);
 
         return move;
+    }
+
+    private int dfsTraverse(TreeNode node) {
+        if(!node.is_leaf){
+            for (TreeNode child: node.children) {
+                int temp_util = dfsTraverse(child);
+                if(node.utility_score() == -1)
+                    node.setUtilityScore(temp_util);
+                else if(node.max_or_min) {
+                    if(temp_util > node.utility_score())
+                        node.setUtilityScore(temp_util);
+                } else {
+                    if(temp_util < node.utility_score())
+                        node.setUtilityScore(temp_util);
+                }
+            }
+        }
+        return node.utility_score();
     }
 
     private int compareBord(int[][] original, int[][] after_mm) {

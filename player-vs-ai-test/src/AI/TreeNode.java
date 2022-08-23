@@ -11,7 +11,7 @@ public class TreeNode {
     private final int[][] board = new int[6][7];
     private int alpha = Integer.MIN_VALUE;
     private int beta = Integer.MAX_VALUE;
-    private int utility_score;
+    private int utility_score = -1;
 
     public TreeNode(int[][] board, int level) {
         setBoard(board);

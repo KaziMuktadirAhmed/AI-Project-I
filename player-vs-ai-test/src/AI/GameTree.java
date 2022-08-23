@@ -12,6 +12,7 @@ public class GameTree {
     public GameTree(int[][] board, int max_move) throws FileNotFoundException {
         setRoot(board);
         setCutOffDepth(max_move);
+        this.Root.max_or_min = false;
         generateGameTree();
     }
 
@@ -41,7 +42,10 @@ public class GameTree {
             if(game_logic.checkInputValidity(i, node.getBoard())) {
                 game_logic.copyBoard(node.getBoard(), new_board);
                 game_logic.turn(i, ((node.level+2)%2)+1, new_board);
+
                 TreeNode child = new TreeNode(new_board, node.level+1);
+                child.max_or_min = !node.max_or_min;
+
                 generateChildren(child);
                 node.children.add(child);
             }
@@ -61,7 +65,7 @@ public class GameTree {
     public void printNode(TreeNode node, String overhead) {
 //        String output = overhead;
         System.out.println(overhead+" "+node);
-        System.out.println(node.level + " leaf: " + node.is_leaf);
+        System.out.println(node.level + " leaf:" + node.is_leaf + " is max:" + node.max_or_min);
         game_logic.showBoard(node.getBoard());
         for (TreeNode child: node.children) {
             printNode(child, overhead+"child");
