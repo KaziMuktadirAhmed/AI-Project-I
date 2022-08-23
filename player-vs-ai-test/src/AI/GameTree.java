@@ -5,12 +5,22 @@ import java.io.FileOutputStream;
 import java.io.PrintStream;
 
 public class GameTree {
-    private final int cut_off_depth = 6;
+    private int cut_off_depth;
     GameLogic game_logic = new GameLogic();
-    public TreeNode Root = new TreeNode(new int[6][7], 0);
+    public TreeNode Root;
 
-    public GameTree() throws FileNotFoundException {
+    public GameTree(int[][] board, int max_move) throws FileNotFoundException {
+        setRoot(board);
+        setCutOffDepth(max_move);
         generateGameTree();
+    }
+
+    private void setRoot(int[][] board) {
+        this.Root = new TreeNode(board, 0);
+    }
+
+    private void setCutOffDepth(int level) {
+        this.cut_off_depth = level;
     }
 
     private void generateGameTree() throws FileNotFoundException {
@@ -51,7 +61,7 @@ public class GameTree {
     public void printNode(TreeNode node, String overhead) {
 //        String output = overhead;
         System.out.println(overhead+" "+node);
-        System.out.println(node.level + "leaf: " + node.is_leaf);
+        System.out.println(node.level + " leaf: " + node.is_leaf);
         game_logic.showBoard(node.getBoard());
         for (TreeNode child: node.children) {
             printNode(child, overhead+"child");
