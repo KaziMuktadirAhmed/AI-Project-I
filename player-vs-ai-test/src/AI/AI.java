@@ -19,7 +19,12 @@ public class AI {
     private int MinMaxTreeTraverse(GameTree tree) {
         int move = -2;
         int max_util = dfsTraverse(tree.Root);
-
+        for (TreeNode child: tree.Root.children) {
+            if(child.utility_score() == max_util){
+                move = compareBord(tree.Root.getBoard(), child.getBoard());
+                break;
+            }
+        }
         return move;
     }
 
