@@ -36,6 +36,7 @@ public class GameTree {
         if (!canExpand(node.getBoard()) || node.level == cut_off_depth) {
             node.is_leaf = true;
             //  evaluate utility score
+            node.setUtilityScore(evaluateUtility(node.getBoard()));
             return;
         }
         for (int i = 0; i < 7; i++) {
@@ -56,6 +57,10 @@ public class GameTree {
         if (game_logic.hasWinner(board) != -1)
             return false;
         else return !game_logic.checkForDraw(board);
+    }
+
+    private int evaluateUtility(int[][] board) {
+        return -1;
     }
 
     public void printGameTree() {
