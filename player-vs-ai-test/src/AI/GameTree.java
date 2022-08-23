@@ -5,8 +5,8 @@ import java.io.FileOutputStream;
 import java.io.PrintStream;
 
 public class GameTree {
+    private final GameLogic game_logic = new GameLogic();
     private int cut_off_depth;
-    GameLogic game_logic = new GameLogic();
     public TreeNode Root;
 
     public GameTree(int[][] board, int max_move) throws FileNotFoundException {
