@@ -5,7 +5,7 @@ import java.io.FileOutputStream;
 import java.io.PrintStream;
 
 public class GameTree {
-    private final int cut_off_depth = 7;
+    private final int cut_off_depth = 6;
     GameLogic game_logic = new GameLogic();
     public TreeNode Root = new TreeNode(new int[6][7], 0);
 
@@ -51,7 +51,7 @@ public class GameTree {
     public void printNode(TreeNode node, String overhead) {
 //        String output = overhead;
         System.out.println(overhead+" "+node);
-        System.out.println(node.level);
+        System.out.println(node.level + "leaf: " + node.is_leaf);
         game_logic.showBoard(node.getBoard());
         for (TreeNode child: node.children) {
             printNode(child, overhead+"child");
