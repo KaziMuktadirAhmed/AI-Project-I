@@ -1,5 +1,7 @@
 package AI;
 
+import java.io.FileNotFoundException;
+
 public class AI {
     private final int max_depth;
     private final int[][] evaluation_table = {
@@ -14,10 +16,11 @@ public class AI {
         this.max_depth = max;
     }
 
-    public int playBoard(int[][] board) {
+    public int playBoard(int[][] board) throws FileNotFoundException {
         int move;
         GameTree tree = new GameTree(board, max_depth);
         move = MinMaxTreeTraverse(tree);
+//        printLastGeneratedGameTree(tree);
         return move;
     }
 
@@ -94,5 +97,9 @@ public class AI {
             }
         }
         return (128 + sum) * (max_depth - level);
+    }
+
+    public void printLastGeneratedGameTree(GameTree tree) throws FileNotFoundException {
+        tree.printGameTree();
     }
 }

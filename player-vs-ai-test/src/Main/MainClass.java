@@ -28,7 +28,7 @@ public class MainClass {
                                 {0, 0, 1, 2, 1, 2, 0}
                             };
         GameTree game_tree = new GameTree(new_board, 6);
-        AI ai = new AI(6);
+        AI ai = new AI(12);
         ai.calcEval();
 //        game_tree.generateGameTree();
         game_tree.printGameTree();
