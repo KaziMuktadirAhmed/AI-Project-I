@@ -42,6 +42,8 @@ public class AI {
                         node.setUtilityScore(temp_util);
                 }
             }
+        } else {
+            node.setUtilityScore(evalutaeBoard(node.getBoard()));
         }
         return node.utility_score();
     }
@@ -63,5 +65,9 @@ public class AI {
         }
         System.out.println(diff_count);
         return diff_col;
+    }
+
+    private int evalutaeBoard(int[][]  board) {
+        return  -2;
     }
 }
