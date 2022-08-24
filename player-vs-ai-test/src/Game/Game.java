@@ -1,14 +1,19 @@
 package Game;
 
+import AI.AI;
+
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class Game {
+    private final boolean with_ai;
     private final int[][] board = new int[6][7];
 
-//    private static final int player_1 = 1;
-//    private static final int player_2 = 2;
+    public Game(boolean with_ai) {
+        this.with_ai = with_ai;
+    }
 
-    public void play () {
+    public void play () throws FileNotFoundException {
         boolean play_game = true;
         int player_instance = 2;
 
@@ -35,8 +40,10 @@ public class Game {
         }
     }
 
-    private void turn (int player) {
-        int place_tile = inputPrompt(player);
+    private void turn (int player) throws FileNotFoundException {
+        int place_tile;
+        if(with_ai) place_tile = promptAI(board);
+        else        place_tile = inputPrompt(player);
         for(int i=0; i<6; i++) {
             if (i == 5) {
                 if(board[i][place_tile] == 0) {
@@ -66,6 +73,11 @@ public class Game {
         }
 
         return place_tile;
+    }
+
+    private int promptAI (int[][] board) throws FileNotFoundException {
+        AI ai = new AI(6);
+        return ai.playBoard(board);
     }
 
     private boolean checkForDraw() {

@@ -11,8 +11,8 @@ public class MainClass {
 //        driver();
     }
 
-    public static void driver() {
-        Game game = new Game();
+    public static void driver() throws FileNotFoundException {
+        Game game = new Game(false);
         game.play();
         // ok initial local repo again
     }

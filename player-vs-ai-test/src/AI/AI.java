@@ -9,7 +9,7 @@ public class AI {
         this.max_depth = max;
     }
 
-    public int playBoard(int[][] board, int player) throws FileNotFoundException {
+    public int playBoard(int[][] board) throws FileNotFoundException {
         int move;
         GameTree tree = new GameTree(board, max_depth);
         move = MinMaxTreeTraverse(tree);
@@ -44,6 +44,10 @@ public class AI {
             }
         }
         return node.utility_score();
+    }
+
+    private int dfsTraverseWithPruning(TreeNode node) {
+        return -1;
     }
 
     private int compareBord(int[][] original, int[][] after_mm) {
