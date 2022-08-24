@@ -43,7 +43,8 @@ public class AI {
                 }
             }
         } else {
-            node.setUtilityScore(evalutaeBoard(node.getBoard()));
+            int util = evaluateBoard(node.getBoard());
+            node.setUtilityScore(util);
         }
         return node.utility_score();
     }
@@ -67,7 +68,7 @@ public class AI {
         return diff_col;
     }
 
-    private int evalutaeBoard(int[][]  board) {
+    private int evaluateBoard(int[][]  board) {
         return  -2;
     }
 }
