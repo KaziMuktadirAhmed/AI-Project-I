@@ -3,6 +3,14 @@ package AI;
 import java.io.FileNotFoundException;
 
 public class AI {
+    private final int[][] evaluationTable = {
+                                                {3, 4, 5, 7, 5, 4, 3},
+                                                {4, 6, 8, 10, 8, 6, 4},
+                                                {5, 8, 11, 13, 11, 8, 5},
+                                                {5, 8, 11, 13, 11, 8, 5},
+                                                {4, 6, 8, 10, 8, 6, 4},
+                                                {3, 4, 5, 7, 5, 4, 3}
+                                            };
     private final int max_depth;
 
     public AI(int max) {
