@@ -42,7 +42,7 @@ public class Game {
 
     private void turn (int player) throws FileNotFoundException {
         int place_tile;
-        if(with_ai) place_tile = promptAI(board);
+        if(with_ai && player == 2) place_tile = promptAI(board);
         else        place_tile = inputPrompt(player);
         for(int i=0; i<6; i++) {
             if (i == 5) {
