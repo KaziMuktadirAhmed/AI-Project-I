@@ -76,7 +76,7 @@ public class Game {
     }
 
     private int promptAI (int[][] board) throws FileNotFoundException {
-        AI ai = new AI(6);
+        AI ai = new AI(8);
         return ai.playBoard(board);
     }
 

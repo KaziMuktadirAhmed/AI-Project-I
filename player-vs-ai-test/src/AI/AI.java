@@ -85,6 +85,7 @@ public class AI {
         System.out.println("eval sum: " + sum);
     }
 
+    // Not good enough
     private int evaluateBoard(int[][]  board, int level) {
         int sum = 0;
         for (int i = 0; i < 6; i++) {
