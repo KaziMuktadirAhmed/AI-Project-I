@@ -48,7 +48,7 @@ public class AI {
                 }
             }
         } else {
-            int util = evaluateBoard(node.getBoard());
+            int util = evaluateBoard(node.getBoard(), node.level);
             node.setUtilityScore(util);
         }
         return node.utility_score();
@@ -69,7 +69,6 @@ public class AI {
                 }
             }
         }
-        System.out.println(diff_count);
         return diff_col;
     }
 
@@ -83,7 +82,7 @@ public class AI {
         System.out.println("eval sum: " + sum);
     }
 
-    private int evaluateBoard(int[][]  board) {
+    private int evaluateBoard(int[][]  board, int level) {
         int sum = 0;
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 7; j++) {
@@ -94,6 +93,6 @@ public class AI {
                 }
             }
         }
-        return sum;
+        return (128 + sum) * (max_depth - level);
     }
 }
