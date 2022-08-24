@@ -9,7 +9,7 @@ public class GameTree {
     private int cut_off_depth;
     public TreeNode Root;
 
-    public GameTree(int[][] board, int max_move) throws FileNotFoundException {
+    public GameTree(int[][] board, int max_move) {
         setRoot(board);
         setCutOffDepth(max_move);
         this.Root.max_or_min = true;
@@ -24,11 +24,8 @@ public class GameTree {
         this.cut_off_depth = level;
     }
 
-    private void generateGameTree() throws FileNotFoundException {
-        PrintStream output_file = new PrintStream(new FileOutputStream("output.txt"));
-        System.setOut(output_file);
+    private void generateGameTree() {
         generateChildren(Root);
-        System.out.println("end");
     }
 
     private void generateChildren(TreeNode node) {
@@ -57,7 +54,9 @@ public class GameTree {
         else return !game_logic.checkForDraw(board);
     }
 
-    public void printGameTree() {
+    public void printGameTree() throws FileNotFoundException {
+        PrintStream output_file = new PrintStream(new FileOutputStream("output.txt"));
+        System.setOut(output_file);
         printNode(Root, "Root");
     }
 
