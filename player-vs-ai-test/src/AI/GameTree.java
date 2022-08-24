@@ -12,7 +12,7 @@ public class GameTree {
     public GameTree(int[][] board, int max_move) throws FileNotFoundException {
         setRoot(board);
         setCutOffDepth(max_move);
-        this.Root.max_or_min = false;
+        this.Root.max_or_min = true;
         generateGameTree();
     }
 

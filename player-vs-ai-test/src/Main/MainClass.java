@@ -1,5 +1,6 @@
 package Main;
 
+import AI.AI;
 import AI.GameTree;
 import Game.Game;
 
@@ -19,6 +20,8 @@ public class MainClass {
 
     public static void test() throws FileNotFoundException {
         GameTree game_tree = new GameTree(new int[6][7], 6);
+        AI ai = new AI(6);
+        ai.calcEval();
 //        game_tree.generateGameTree();
         game_tree.printGameTree();
     }

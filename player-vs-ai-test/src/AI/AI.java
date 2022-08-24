@@ -4,7 +4,7 @@ import java.io.FileNotFoundException;
 
 public class AI {
     private final int max_depth;
-    private final int[][] evaluationTable = {
+    private final int[][] evaluation_table = {
                                                 {3, 4, 5, 7, 5, 4, 3},
                                                 {4, 6, 8, 10, 8, 6, 4},
                                                 {5, 8, 11, 13, 11, 8, 5},
@@ -75,7 +75,27 @@ public class AI {
         return diff_col;
     }
 
+    public void calcEval() {
+        int sum = 0;
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 7; j++) {
+                sum += evaluation_table[i][j];
+            }
+        }
+        System.out.println("eval sum: " + sum);
+    }
+
     private int evaluateBoard(int[][]  board) {
+        int sum = 0;
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 7; j++) {
+                if(board[i][j] == 2) {
+                    sum += evaluation_table[i][j];
+                } else if (board[i][j] == 1) {
+                    sum -= evaluation_table[i][j];
+                }
+            }
+        }
         return  -2;
     }
 }
