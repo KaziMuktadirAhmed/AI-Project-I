@@ -76,7 +76,7 @@ public class Game {
     }
 
     private int promptAI (int[][] board) throws FileNotFoundException {
-        AI ai = new AI(8);
+        AI ai = new AI(7);
         return ai.playBoard(board);
     }
 
@@ -207,15 +207,18 @@ public class Game {
         System.out.println("4-Connect");
         System.out.println("=========");
 
-        for(int i=0; i<7; i++) output += (i + " ");
-        output += "\n";
-        for(int i=0; i<7; i++) output += "==";
+        for(int i=0; i<7; i++) {
+            if(i == 0) output += "|";
+            output += (i + "|");
+        }   output += "\n";
+        for(int i=0; i<15; i++) output += "=";
         output += "\n";
 
         for (int i=0; i<6; ++i) {
             String line = "";
             for (int j=0; j<7; ++j) {
-                line += (board[i][j] + " ");
+                if(j == 0) line += "|";
+                line += (board[i][j] + "|");
             }
             output += (line + "\n");
         }
