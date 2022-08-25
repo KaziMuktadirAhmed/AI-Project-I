@@ -26,7 +26,8 @@ public class AI {
 
     private int MinMaxTreeTraverse(GameTree tree) {
         int move = -2;
-        int max_util = dfsTraverse(tree.Root);
+//        int max_util = dfsTraverse(tree.Root);
+        int max_util = dfsTraverseWithPruning(tree.Root);
         System.out.println("max_util:" + max_util);
         for (TreeNode child: tree.Root.children) {
             if(child.utility_score() == max_util){
@@ -59,7 +60,37 @@ public class AI {
     }
 
     private int dfsTraverseWithPruning(TreeNode node) {
-        return -1;
+        if(!node.is_leaf){
+            for (TreeNode child: node.children) {
+                child.setAlpha(node.alpha());
+                child.setBeta(node.beta());
+
+                // pruning condition
+                int temp_util;
+                if(node.alpha() <= node.beta()) temp_util = dfsTraverseWithPruning(child);
+                else                            continue;
+
+                if(node.utility_score() == -1)
+                    node.setUtilityScore(temp_util);
+                else if(node.max_or_min) {
+                    if(temp_util > node.utility_score()){
+                        node.setUtilityScore(temp_util);
+                        node.setAlpha(temp_util);
+                    }
+                } else {
+                    if(temp_util < node.utility_score()) {
+                        node.setUtilityScore(temp_util);
+                        node.setBeta(temp_util);
+                    }
+                }
+            }
+        } else {
+            int util = evaluateBoard(node.getBoard(), node.level);
+            node.setUtilityScore(util);
+            if(node.max_or_min)     node.setAlpha(util);
+            else                    node.setBeta(util);
+        }
+        return node.utility_score();
     }
 
     private int compareBord(int[][] original, int[][] after_mm) {
