@@ -27,6 +27,7 @@ public class AI {
     private int MinMaxTreeTraverse(GameTree tree) {
         int move = -2;
         int max_util = dfsTraverse(tree.Root);
+        System.out.println("max_util:" + max_util);
         for (TreeNode child: tree.Root.children) {
             if(child.utility_score() == max_util){
                 move = compareBord(tree.Root.getBoard(), child.getBoard());
