@@ -218,7 +218,8 @@ public class Game {
             String line = "";
             for (int j=0; j<7; ++j) {
                 if(j == 0) line += "|";
-                line += (board[i][j] + "|");
+                if(board[i][j] != 0)    line += (board[i][j] + "|");
+                else                    line += (" " + "|");
             }
             output += (line + "\n");
         }
