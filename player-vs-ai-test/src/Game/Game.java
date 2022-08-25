@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 public class Game {
     private final boolean with_ai;
+    private final AI ai = new AI(8);
     private final int[][] board = new int[6][7];
 
     public Game(boolean with_ai) {
@@ -40,9 +41,14 @@ public class Game {
         }
     }
 
-    private void turn (int player) throws FileNotFoundException {
+    private void turn (int player){
         int place_tile;
-        if(with_ai && player == 2) place_tile = promptAI(board);
+        if(with_ai && player == 2){
+            long start = System.nanoTime();
+            place_tile = ai.playBoard(board);
+            long end = System.nanoTime();
+            System.out.println("Time taken: " + (end - start));
+        }
         else        place_tile = inputPrompt(player);
         for(int i=0; i<6; i++) {
             if (i == 5) {
@@ -73,11 +79,6 @@ public class Game {
         }
 
         return place_tile;
-    }
-
-    private int promptAI (int[][] board) throws FileNotFoundException {
-        AI ai = new AI(7);
-        return ai.playBoard(board);
     }
 
     private boolean checkForDraw() {
