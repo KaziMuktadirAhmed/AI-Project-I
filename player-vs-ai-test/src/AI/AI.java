@@ -131,7 +131,7 @@ public class AI {
                 }
             }
         }
-        return (138 + sum) * (max_depth - level);
+        return (138 + sum) * ((max_depth+1) - level);
     }
 
     public void printLastGeneratedGameTree(GameTree tree) throws FileNotFoundException {

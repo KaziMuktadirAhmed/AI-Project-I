@@ -32,6 +32,7 @@ public class GameTree {
         int[][] new_board = new int[6][7];
         if (!canExpand(node.getBoard()) || node.level == cut_off_depth) {
             node.is_leaf = true;
+            node.setUtilityScore(evaluateBoard(node.getBoard(), node.level));
             return;
         }
         for (int i = 0; i < 7; i++) {
@@ -54,6 +55,29 @@ public class GameTree {
         else return !game_logic.checkForDraw(board);
     }
 
+    private int evaluateBoard(int[][]  board, int level) {
+        int[][] evaluation_table = {
+                {3, 4, 5, 7, 5, 4, 3},
+                {4, 6, 8, 10, 8, 6, 4},
+                {5, 8, 11, 13, 11, 8, 5},
+                {5, 8, 11, 13, 11, 8, 5},
+                {4, 6, 8, 10, 8, 6, 4},
+                {3, 4, 5, 7, 5, 4, 3}
+        };
+        int sum = 0;
+        int util = 138;
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 7; j++) {
+                if(board[i][j] == 2) {
+                    sum += evaluation_table[i][j];
+                } else if (board[i][j] == 1) {
+                    sum -= evaluation_table[i][j];
+                }
+            }
+        }
+        return (util + sum) * ((this.cut_off_depth+1) - level);
+    }
+
     public void printGameTree() throws FileNotFoundException {
         PrintStream output_file = new PrintStream(new FileOutputStream("output.txt"));
         System.setOut(output_file);
@@ -63,7 +87,7 @@ public class GameTree {
     public void printNode(TreeNode node, String overhead) {
 //        String output = overhead;
         System.out.println(overhead+" "+node);
-        System.out.println(node.level + " leaf:" + node.is_leaf + " is max:" + node.max_or_min);
+        System.out.println(node.level + " leaf:" + node.is_leaf + " is max:" + node.max_or_min + " util: " + node.utility_score());
         game_logic.showBoard(node.getBoard());
         for (TreeNode child: node.children) {
             printNode(child, overhead+"child");
