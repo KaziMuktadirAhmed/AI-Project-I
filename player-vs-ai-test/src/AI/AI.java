@@ -124,11 +124,11 @@ public class AI {
         int sum = 0;
         int winner = 0;
 
-        // check for possible win condition 
+        // check for possible win condition
         GameLogic logic = new GameLogic();
         if((winner = logic.hasWinner(board)) != -1) {
-            if(winner == 1)         return Integer.MIN_VALUE;
-            else if(winner == 2)    return Integer.MAX_VALUE;
+            if(winner == 1)         return -9999 * ((max_depth+1) - level);
+            else if(winner == 2)    return 9999 * ((max_depth+1) - level);
         }
 
         for (int i = 0; i < 6; i++) {
@@ -140,7 +140,7 @@ public class AI {
                 }
             }
         }
-        return (0 + sum) * ((max_depth+1) - level);
+        return sum * ((max_depth+1) - level);
     }
 
     public void printLastGeneratedGameTree(GameTree tree) throws FileNotFoundException {
