@@ -122,6 +122,15 @@ public class AI {
     // Not good enough
     private int evaluateBoard(int[][]  board, int level) {
         int sum = 0;
+        int winner = 0;
+
+        // check for possible win condition 
+        GameLogic logic = new GameLogic();
+        if((winner = logic.hasWinner(board)) != -1) {
+            if(winner == 1)         return Integer.MIN_VALUE;
+            else if(winner == 2)    return Integer.MAX_VALUE;
+        }
+
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 7; j++) {
                 if(board[i][j] == 2) {
@@ -131,7 +140,7 @@ public class AI {
                 }
             }
         }
-        return (138 + sum) * ((max_depth+1) - level);
+        return (0 + sum) * ((max_depth+1) - level);
     }
 
     public void printLastGeneratedGameTree(GameTree tree) throws FileNotFoundException {
