@@ -8,8 +8,8 @@ import java.io.FileNotFoundException;
 
 public class MainClass {
     public static void main(String[] args) throws FileNotFoundException {
-        test();
-//        driver();
+//        test();
+        driver();
     }
 
     public static void driver() throws FileNotFoundException {

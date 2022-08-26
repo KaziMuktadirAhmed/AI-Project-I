@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class TreeNode {
     public boolean is_leaf = false;
     public final int level;
+    public final int next_player_instance;
     public boolean max_or_min;
     public ArrayList<TreeNode> children = new ArrayList<>();
 
@@ -13,9 +14,10 @@ public class TreeNode {
     private int beta = Integer.MAX_VALUE;
     private int utility_score = -1;
 
-    public TreeNode(int[][] board, int level) {
+    public TreeNode(int[][] board, int level, int next_player) {
         setBoard(board);
         this.level = level;
+        this.next_player_instance = next_player;
     }
 
     public int[][] getBoard() {

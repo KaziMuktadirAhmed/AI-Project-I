@@ -17,7 +17,7 @@ public class GameTree {
     }
 
     private void setRoot(int[][] board) {
-        this.Root = new TreeNode(board, 0);
+        this.Root = new TreeNode(board, 0, 2);
     }
 
     private void setCutOffDepth(int level) {
@@ -32,15 +32,15 @@ public class GameTree {
         int[][] new_board = new int[6][7];
         if (!canExpand(node.getBoard()) || node.level == cut_off_depth) {
             node.is_leaf = true;
-            node.setUtilityScore(evaluateBoard(node.getBoard(), node.level));
+//            node.setUtilityScore(evaluateBoard(node.getBoard(), node.level));
             return;
         }
         for (int i = 0; i < 7; i++) {
             if(game_logic.checkInputValidity(i, node.getBoard())) {
                 game_logic.copyBoard(node.getBoard(), new_board);
-                game_logic.turn(i, ((node.level+2)%2)+1, new_board);
+                game_logic.turn(i, node.next_player_instance, new_board);
 
-                TreeNode child = new TreeNode(new_board, node.level+1);
+                TreeNode child = new TreeNode(new_board, node.level+1, ((node.next_player_instance+2)%2)+1);
                 child.max_or_min = !node.max_or_min;
 
                 generateChildren(child);
@@ -87,7 +87,7 @@ public class GameTree {
     public void printNode(TreeNode node, String overhead) {
 //        String output = overhead;
         System.out.println(overhead+" "+node);
-        System.out.println(node.level + " leaf:" + node.is_leaf + " is max:" + node.max_or_min + " util: " + node.utility_score());
+        System.out.println(node.level + " leaf:" + node.is_leaf + " is max:" + node.max_or_min + " util: " + node.utility_score() + " next player: " + node.next_player_instance);
         game_logic.showBoard(node.getBoard());
         for (TreeNode child: node.children) {
             printNode(child, overhead+"child");
