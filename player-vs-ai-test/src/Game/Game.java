@@ -1,8 +1,6 @@
 package Game;
 
 import AI.AI;
-
-import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class Game {
@@ -14,7 +12,7 @@ public class Game {
         this.with_ai = with_ai;
     }
 
-    public void play () throws FileNotFoundException {
+    public void play (){
         boolean play_game = true;
         int player_instance = 2;
 
