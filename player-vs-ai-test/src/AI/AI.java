@@ -25,7 +25,6 @@ public class AI {
         int move = -2;
 //        int max_util = dfsTraverse(tree.Root);
         int max_util = dfsTraverseWithPruning(tree.Root);
-//        System.out.println("max_util:" + max_util);
         for (TreeNode child : tree.Root.children) {
             System.out.print(child.utility_score() + " ");
         }
@@ -68,7 +67,7 @@ public class AI {
                 // pruning condition
                 int temp_util;
                 if(node.alpha() <= node.beta()) temp_util = dfsTraverseWithPruning(child);
-                else                            continue;
+                else                            break;
 
                 if(node.utility_score() == -1)
                     node.setUtilityScore(temp_util);
