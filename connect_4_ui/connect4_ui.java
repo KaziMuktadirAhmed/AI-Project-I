@@ -90,13 +90,19 @@ class Connect4 extends JPanel implements ActionListener, MouseListener, MouseMot
         }
 
         private static void test(Color[][] board) {
+            int[][] board_arr = new int[6][7];
             for (int i = 0; i < 7; i++) {
                 for (int j = 0; j < 6; j++) {
-                    if(board[i][j].equals(Color.WHITE))         System.out.print("0 ");
-                    else if (board[i][j].equals(Color.YELLOW))  System.out.print("1 ");
-                    else if (board[i][j].equals(Color.RED))     System.out.print("2 ");
+                    if(board[i][j].equals(Color.WHITE))         board_arr[j][i] = 0;
+                    else if (board[i][j].equals(Color.YELLOW))  board_arr[j][i] = 1;
+                    else if (board[i][j].equals(Color.RED))     board_arr[j][i] = 2;
                 }
-                System.out.print("\n");
+            }
+            for (int i = 0; i < 6; i++) {
+                for (int j = 0; j < 7; j++) {
+                    System.out.print(board_arr[i][j] + " ");
+                }
+                System.out.println();
             }
             System.out.println("end");
         }
