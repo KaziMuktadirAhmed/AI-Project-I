@@ -64,7 +64,7 @@ public class Game {
     }
 
     private int inputPrompt (int player) {
-        int place_tile = -1;
+        int place_tile;
         Scanner scan_input = new Scanner(System.in);
 
         System.out.print("Move for player-" + player +": ");
