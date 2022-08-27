@@ -108,8 +108,7 @@ public class AI {
 
     // maybe good enough
     private int evaluateBoard(int[][]  board, int level) {
-        int sum = 0;
-        int winner = 0;
+        int sum = 0, winner = 0;
 
         // check for possible win condition
         GameLogic logic = new GameLogic();
