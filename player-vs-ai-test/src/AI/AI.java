@@ -18,7 +18,6 @@ public class AI {
         int move;
         GameTree tree = new GameTree(board, max_depth);
         move = MinMaxTreeTraverse(tree);
-//        printLastGeneratedGameTree(tree);
         return move;
     }
 
