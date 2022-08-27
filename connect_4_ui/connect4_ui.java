@@ -55,6 +55,7 @@ class Connect4 extends JPanel implements ActionListener, MouseListener, MouseMot
 
     public void mousePressed(MouseEvent e) {
         Board.drop();
+//        Board.test();
     }
 
     public void mouseReleased(MouseEvent e) {}
@@ -88,7 +89,7 @@ class Connect4 extends JPanel implements ActionListener, MouseListener, MouseMot
             turn = 0;
         }
 
-        private static void test(Color[][] board) {
+        private static void test() {
             int[][] board_arr = new int[6][7];
             for (int i = 0; i < 7; i++) {
                 for (int j = 0; j < 6; j++) {
@@ -162,6 +163,7 @@ class Connect4 extends JPanel implements ActionListener, MouseListener, MouseMot
             }).start();
             try { Thread.currentThread().sleep(100); } catch(Exception ignored) {}
             if (gameDone) return;
+            System.out.println("turn: "+turn);
             turn = (turn + 1) % players.length;
         }
 
