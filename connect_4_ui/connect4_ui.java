@@ -89,7 +89,20 @@ class Connect4 extends JPanel implements ActionListener, MouseListener, MouseMot
             turn = 0;
         }
 
+        private static void test(Color[][] board) {
+            for (int i = 0; i < 7; i++) {
+                for (int j = 0; j < 6; j++) {
+                    if(board[i][j].equals(Color.WHITE))         System.out.print("0 ");
+                    else if (board[i][j].equals(Color.YELLOW))  System.out.print("1 ");
+                    else if (board[i][j].equals(Color.RED))     System.out.print("2 ");
+                }
+                System.out.print("\n");
+            }
+            System.out.println("end");
+        }
+
         public static void draw(Graphics g) {
+            test(board);
             ((Graphics2D)g).setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
             ((Graphics2D)(g)).setStroke(new BasicStroke(2.0f));
 

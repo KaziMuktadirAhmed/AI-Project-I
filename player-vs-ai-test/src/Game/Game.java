@@ -203,26 +203,26 @@ public class Game {
     }
 
     public void showBoard() {
-        String output = "";
+        StringBuilder output = new StringBuilder();
 
         System.out.println("4-Connect");
         System.out.println("=========");
 
         for(int i=0; i<7; i++) {
-            if(i == 0) output += "|";
-            output += (i + "|");
-        }   output += "\n";
-        for(int i=0; i<15; i++) output += "=";
-        output += "\n";
+            if(i == 0) output.append("|");
+            output.append(i).append("|");
+        }   output.append("\n");
+        output.append("=".repeat(15));
+        output.append("\n");
 
         for (int i=0; i<6; ++i) {
-            String line = "";
+            StringBuilder line = new StringBuilder();
             for (int j=0; j<7; ++j) {
-                if(j == 0) line += "|";
-                if(board[i][j] != 0)    line += (board[i][j] + "|");
-                else                    line += ("_" + "|");
+                if(j == 0) line.append("|");
+                if(board[i][j] != 0)    line.append(board[i][j]).append("|");
+                else                    line.append("_" + "|");
             }
-            output += (line + "\n");
+            output.append(line).append("\n");
         }
         System.out.println(output);
     }
