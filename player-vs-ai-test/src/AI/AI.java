@@ -106,7 +106,7 @@ public class AI {
         return diff_col;
     }
 
-    // Not good enough
+    // maybe good enough
     private int evaluateBoard(int[][]  board, int level) {
         int sum = 0;
         int winner = 0;
