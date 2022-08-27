@@ -4,7 +4,6 @@ import java.awt.event.*;
 import java.util.*;
 
 class Connect4 extends JPanel implements ActionListener, MouseListener, MouseMotionListener {
-
     private static final int WIDTH, HEIGHT, widthUnit, heightUnit, boardLength, boardHeight;
     private static JFrame frame;
     private static Connect4 instance;
@@ -108,7 +107,7 @@ class Connect4 extends JPanel implements ActionListener, MouseListener, MouseMot
         }
 
         public static void draw(Graphics g) {
-            test(board);
+//            test(board);
             ((Graphics2D)g).setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
             ((Graphics2D)(g)).setStroke(new BasicStroke(2.0f));
 
