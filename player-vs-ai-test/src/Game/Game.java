@@ -220,7 +220,7 @@ public class Game {
             for (int j=0; j<7; ++j) {
                 if(j == 0) line += "|";
                 if(board[i][j] != 0)    line += (board[i][j] + "|");
-                else                    line += (" " + "|");
+                else                    line += ("_" + "|");
             }
             output += (line + "\n");
         }
