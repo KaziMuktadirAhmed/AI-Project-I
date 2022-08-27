@@ -1,7 +1,5 @@
 package AI;
 
-import java.io.FileNotFoundException;
-
 public class AI {
     private final int max_depth;
     private final int[][] evaluation_table = {
@@ -109,16 +107,6 @@ public class AI {
         return diff_col;
     }
 
-    public void calcEval() {
-        int sum = 0;
-        for (int i = 0; i < 6; i++) {
-            for (int j = 0; j < 7; j++) {
-                sum += evaluation_table[i][j];
-            }
-        }
-        System.out.println("eval sum: " + sum);
-    }
-
     // Not good enough
     private int evaluateBoard(int[][]  board, int level) {
         int sum = 0;
@@ -141,9 +129,5 @@ public class AI {
             }
         }
         return sum * ((max_depth+1) - level);
-    }
-
-    public void printLastGeneratedGameTree(GameTree tree) throws FileNotFoundException {
-        tree.printGameTree();
     }
 }
