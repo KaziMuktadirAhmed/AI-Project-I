@@ -30,8 +30,8 @@ public class Connect4 extends JPanel implements ActionListener, MouseListener, M
     }
 
     static {
-        int initialWidth = 1800;
-        int initialHeight = 1000;
+        int initialWidth = 1000;
+        int initialHeight = 700;
         boardLength = 7;
         boardHeight = 6;
         widthUnit = initialWidth / (boardLength + 2);
@@ -74,7 +74,7 @@ public class Connect4 extends JPanel implements ActionListener, MouseListener, M
     }
 
     static class Board {
-        private static final AI ai = new AI(7);
+        private static final AI ai = new AI(6);
         private static final GameLogic logic = new GameLogic();
         static Color[][] board;
         static Color[] players;
