@@ -14,3 +14,7 @@ Project is build in java. test folder is a console based 2-player 1v1 Connect-4 
   AI will use MinMax algorithm to determine the best move for the situation.
   Alpha-Beta pruning method will be used for optimized tree search.
 </p>
+
+### Project developers
+# Kazi Muktadir Ahmed - BSSE1111
+# Tahmeed Mahbub - BSSE1127
