@@ -149,29 +149,24 @@ class Connect4 extends JPanel implements ActionListener, MouseListener, MouseMot
             new Thread(() -> {
                 Color color = players[turn];
                 int x = hoverX;
+                int move = x / widthUnit - 1;
                 if(turn == 1) {
                     System.out.println("turn: "+turn);
-                    System.out.println("Should be AI move: "+ (int)(x/widthUnit-1));
+                    System.out.println("Should be AI move: "+ (int) (move));
                     int[][] board_arr = Board.colorBoardTo2DIntArr();
 //                    Board.logic.turn((x/widthUnit-1),turn+1,board_arr);
-                    for (int i = 0; i < 6; i++) {
-                        for (int j = 0; j < 7; j++) {
-                            System.out.print(board_arr[i][j]+" ");
-                        }
-                        System.out.println();
-                    }
+                    move = Board.ai.playBoard(board_arr);
                 }
                 int i;
-                for (i = 0; i < board[x/widthUnit - 1].length && board[x/widthUnit - 1][i] == Color.WHITE; i++) {
-                    board[x/widthUnit - 1][i] = color;
+                for (i = 0; i < board[move].length && board[move][i] == Color.WHITE; i++) {
+                    board[move][i] = color;
                     try { Thread.sleep(200); } catch(Exception ignored) {}
-                    board[x/widthUnit - 1][i] = Color.WHITE;
+                    board[move][i] = Color.WHITE;
                     if (gameDone) return;
                 }
                 if (gameDone) return;
-                board[x/widthUnit - 1][i - 1] = color;
-                checkConnect(x/widthUnit - 1, i - 1);
-//                Board.colorBoardTo2DIntArr();
+                board[move][i - 1] = color;
+                checkConnect(move, i - 1);
             }).start();
             try { Thread.sleep(100); } catch(Exception ignored) {}
             if (gameDone) return;

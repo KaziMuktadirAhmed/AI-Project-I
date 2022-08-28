@@ -26,9 +26,6 @@ public class AI {
         int move = -2;
 //        int max_util = dfsTraverse(tree.Root);
         int max_util = dfsTraverseWithPruning(tree.Root);
-        for (TreeNode child : tree.Root.children) {
-            System.out.print(child.utility_score() + " ");
-        }
         for (TreeNode child: tree.Root.children) {
             if(child.utility_score() == max_util){
                 move = compareBord(tree.Root.getBoard(), child.getBoard());
