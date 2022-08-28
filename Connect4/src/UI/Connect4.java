@@ -74,7 +74,7 @@ public class Connect4 extends JPanel implements ActionListener, MouseListener, M
     }
 
     static class Board {
-        private static final AI ai = new AI(6);
+        private static final AI ai = new AI(7);
         static Color[][] board;
         static Color[] players;
         static int turn;
