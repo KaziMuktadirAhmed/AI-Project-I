@@ -1,5 +1,7 @@
 package UI;
 
+import AI.AI;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -10,6 +12,7 @@ class Connect4 extends JPanel implements ActionListener, MouseListener, MouseMot
     private static JFrame frame;
     private static Connect4 instance;
     private static Point p1, p2;
+    private static AI ai = new AI(7);
 
     public static void main(String[] args) {
         instance = new Connect4();
@@ -110,7 +113,6 @@ class Connect4 extends JPanel implements ActionListener, MouseListener, MouseMot
         }
 
         public static void draw(Graphics g) {
-//            test(board);
             ((Graphics2D)g).setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
             ((Graphics2D)(g)).setStroke(new BasicStroke(2.0f));
 
@@ -162,6 +164,7 @@ class Connect4 extends JPanel implements ActionListener, MouseListener, MouseMot
                 if (gameDone) return;
                 board[x/widthUnit - 1][i - 1] = color;
                 checkConnect(x/widthUnit - 1, i - 1);
+                Board.test();
             }).start();
             try { Thread.currentThread().sleep(100); } catch(Exception ignored) {}
             if (gameDone) return;
