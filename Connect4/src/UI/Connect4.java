@@ -75,7 +75,6 @@ public class Connect4 extends JPanel implements ActionListener, MouseListener, M
 
     static class Board {
         private static final AI ai = new AI(6);
-        private static final GameLogic logic = new GameLogic();
         static Color[][] board;
         static Color[] players;
         static int turn;
@@ -147,10 +146,6 @@ public class Connect4 extends JPanel implements ActionListener, MouseListener, M
                 Color color = players[0];
                 int x = hoverX;
                 int move = x / widthUnit - 1;
-//                if(turn == 1) {
-//                    int[][] board_arr = Board.colorBoardTo2DIntArr();
-//                    move = Board.ai.playBoard(board_arr);
-//                }
                 int i;
                 for (i = 0; i < board[move].length && board[move][i] == Color.WHITE; i++) {
                     board[move][i] = color;
@@ -179,7 +174,6 @@ public class Connect4 extends JPanel implements ActionListener, MouseListener, M
             }).start();
             try { Thread.sleep(100); } catch(Exception ignored) {}
             if (gameDone) return;
-//            turn = (turn + 1) % players.length;
         }
 
         public static void checkConnect(int x, int y) {
@@ -241,6 +235,5 @@ public class Connect4 extends JPanel implements ActionListener, MouseListener, M
 
             return null;
         }
-
     }
 }
