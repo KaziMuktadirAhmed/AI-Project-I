@@ -2,6 +2,7 @@ package AI;
 
 public class AI {
     private final int max_depth;
+    private final GameLogic logic = new GameLogic();
     private final int[][] evaluation_table = {
                                                 {3, 4, 5, 7, 5, 4, 3},
                                                 {4, 6, 8, 10, 8, 6, 4},
@@ -110,7 +111,7 @@ public class AI {
         int sum = 0, winner;
 
         // check for possible win condition
-        GameLogic logic = new GameLogic();
+
         if((winner = logic.hasWinner(board)) != -1) {
             if(winner == 1)         return -9999 * ((max_depth+1) - level);
             else if(winner == 2)    return 9999 * ((max_depth+1) - level);

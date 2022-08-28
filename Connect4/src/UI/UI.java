@@ -1,6 +1,6 @@
 package UI;
 
-import AI.AI;
+import AI.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,10 +9,11 @@ import java.util.*;
 
 class Connect4 extends JPanel implements ActionListener, MouseListener, MouseMotionListener {
     private static final int WIDTH, HEIGHT, widthUnit, heightUnit, boardLength, boardHeight;
+    private static final AI ai = new AI(7);
+    private final GameLogic logic = new GameLogic();
     private static JFrame frame;
     private static Connect4 instance;
     private static Point p1, p2;
-    private static AI ai = new AI(7);
 
     public static void main(String[] args) {
         instance = new Connect4();
@@ -94,7 +95,7 @@ class Connect4 extends JPanel implements ActionListener, MouseListener, MouseMot
             turn = 0;
         }
 
-        private static void test() {
+        private static void colorBoardTo2DIntArr() {
             int[][] board_arr = new int[6][7];
             for (int i = 0; i < 7; i++) {
                 for (int j = 0; j < 6; j++) {
@@ -153,20 +154,21 @@ class Connect4 extends JPanel implements ActionListener, MouseListener, MouseMot
             if (board[hoverX/widthUnit - 1][0] != Color.WHITE) return;
             new Thread(() -> {
                 Color color = players[turn];
+                if(turn == 1) System.out.println("Should be AI");
                 int x = hoverX;
                 int i;
                 for (i = 0; i < board[x/widthUnit - 1].length && board[x/widthUnit - 1][i] == Color.WHITE; i++) {
                     board[x/widthUnit - 1][i] = color;
-                    try { Thread.currentThread().sleep(200); } catch(Exception ignored) {}
+                    try { Thread.sleep(200); } catch(Exception ignored) {}
                     board[x/widthUnit - 1][i] = Color.WHITE;
                     if (gameDone) return;
                 }
                 if (gameDone) return;
                 board[x/widthUnit - 1][i - 1] = color;
                 checkConnect(x/widthUnit - 1, i - 1);
-                Board.test();
+                Board.colorBoardTo2DIntArr();
             }).start();
-            try { Thread.currentThread().sleep(100); } catch(Exception ignored) {}
+            try { Thread.sleep(100); } catch(Exception ignored) {}
             if (gameDone) return;
             System.out.println("turn: "+turn);
             turn = (turn + 1) % players.length;
