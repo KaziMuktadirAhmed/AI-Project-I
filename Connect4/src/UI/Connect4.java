@@ -7,15 +7,11 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 
-class Connect4 extends JPanel implements ActionListener, MouseListener, MouseMotionListener {
+public class Connect4 extends JPanel implements ActionListener, MouseListener, MouseMotionListener {
     private static final int WIDTH, HEIGHT, widthUnit, heightUnit, boardLength, boardHeight;
     private static JFrame frame;
     private static Connect4 instance;
     private static Point p1, p2;
-
-    public static void main(String[] args) {
-        instance = new Connect4();
-    }
 
     public Connect4() {
         setBackground(Color.WHITE);

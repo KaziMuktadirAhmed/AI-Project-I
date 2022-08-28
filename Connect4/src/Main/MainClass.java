@@ -1,20 +1,20 @@
 package Main;
 
 import AI.GameTree;
-import Game.Game;
-
+import UI.*;
 import java.io.FileNotFoundException;
 
 public class MainClass {
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args){
 //        test();
         driver();
     }
 
-    public static void driver() throws FileNotFoundException {
-        Game game = new Game(true);
-        game.play();
+    public static void driver(){
+//        Game game = new Game(true);
+//        game.play();
         // ok initial local repo again
+        Connect4 game_instance = new Connect4();
     }
 
     public static void test() throws FileNotFoundException {
