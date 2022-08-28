@@ -16,5 +16,5 @@ Project is build in java. test folder is a console based 2-player 1v1 Connect-4 
 </p>
 
 ### Project developers
-#### Kazi Muktadir Ahmed - BSSE1111
-#### Tahmeed Mahbub - BSSE1127
+# Kazi Muktadir Ahmed - BSSE1111
+# Tahmeed Mahbub - BSSE1127
