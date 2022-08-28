@@ -151,10 +151,7 @@ class Connect4 extends JPanel implements ActionListener, MouseListener, MouseMot
                 int x = hoverX;
                 int move = x / widthUnit - 1;
                 if(turn == 1) {
-                    System.out.println("turn: "+turn);
-                    System.out.println("Should be AI move: "+ (int) (move));
                     int[][] board_arr = Board.colorBoardTo2DIntArr();
-//                    Board.logic.turn((x/widthUnit-1),turn+1,board_arr);
                     move = Board.ai.playBoard(board_arr);
                 }
                 int i;
