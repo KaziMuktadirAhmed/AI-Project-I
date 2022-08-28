@@ -9,8 +9,6 @@ import java.util.*;
 
 class Connect4 extends JPanel implements ActionListener, MouseListener, MouseMotionListener {
     private static final int WIDTH, HEIGHT, widthUnit, heightUnit, boardLength, boardHeight;
-    private static final AI ai = new AI(7);
-    private final GameLogic logic = new GameLogic();
     private static JFrame frame;
     private static Connect4 instance;
     private static Point p1, p2;
@@ -80,6 +78,8 @@ class Connect4 extends JPanel implements ActionListener, MouseListener, MouseMot
     }
 
     static class Board {
+        private static final AI ai = new AI(7);
+        private static final GameLogic logic = new GameLogic();
         static Color[][] board;
         static Color[] players;
         static int turn;
@@ -95,7 +95,7 @@ class Connect4 extends JPanel implements ActionListener, MouseListener, MouseMot
             turn = 0;
         }
 
-        private static void colorBoardTo2DIntArr() {
+        private static int[][] colorBoardTo2DIntArr() {
             int[][] board_arr = new int[6][7];
             for (int i = 0; i < 7; i++) {
                 for (int j = 0; j < 6; j++) {
@@ -104,13 +104,7 @@ class Connect4 extends JPanel implements ActionListener, MouseListener, MouseMot
                     else if (board[i][j].equals(Color.RED))     board_arr[j][i] = 2;
                 }
             }
-            for (int i = 0; i < 6; i++) {
-                for (int j = 0; j < 7; j++) {
-                    System.out.print(board_arr[i][j] + " ");
-                }
-                System.out.println();
-            }
-            System.out.println("end");
+            return board_arr;
         }
 
         public static void draw(Graphics g) {
@@ -154,8 +148,19 @@ class Connect4 extends JPanel implements ActionListener, MouseListener, MouseMot
             if (board[hoverX/widthUnit - 1][0] != Color.WHITE) return;
             new Thread(() -> {
                 Color color = players[turn];
-                if(turn == 1) System.out.println("Should be AI");
                 int x = hoverX;
+                if(turn == 1) {
+                    System.out.println("turn: "+turn);
+                    System.out.println("Should be AI move: "+ (int)(x/widthUnit-1));
+                    int[][] board_arr = Board.colorBoardTo2DIntArr();
+//                    Board.logic.turn((x/widthUnit-1),turn+1,board_arr);
+                    for (int i = 0; i < 6; i++) {
+                        for (int j = 0; j < 7; j++) {
+                            System.out.print(board_arr[i][j]+" ");
+                        }
+                        System.out.println();
+                    }
+                }
                 int i;
                 for (i = 0; i < board[x/widthUnit - 1].length && board[x/widthUnit - 1][i] == Color.WHITE; i++) {
                     board[x/widthUnit - 1][i] = color;
@@ -166,11 +171,10 @@ class Connect4 extends JPanel implements ActionListener, MouseListener, MouseMot
                 if (gameDone) return;
                 board[x/widthUnit - 1][i - 1] = color;
                 checkConnect(x/widthUnit - 1, i - 1);
-                Board.colorBoardTo2DIntArr();
+//                Board.colorBoardTo2DIntArr();
             }).start();
             try { Thread.sleep(100); } catch(Exception ignored) {}
             if (gameDone) return;
-            System.out.println("turn: "+turn);
             turn = (turn + 1) % players.length;
         }
 
