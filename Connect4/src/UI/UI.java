@@ -147,14 +147,30 @@ class Connect4 extends JPanel implements ActionListener, MouseListener, MouseMot
         public static void drop() {
             if (board[hoverX/widthUnit - 1][0] != Color.WHITE) return;
             new Thread(() -> {
-                Color color = players[turn];
+                // player 1
+                Color color = players[0];
                 int x = hoverX;
                 int move = x / widthUnit - 1;
-                if(turn == 1) {
-                    int[][] board_arr = Board.colorBoardTo2DIntArr();
-                    move = Board.ai.playBoard(board_arr);
-                }
+//                if(turn == 1) {
+//                    int[][] board_arr = Board.colorBoardTo2DIntArr();
+//                    move = Board.ai.playBoard(board_arr);
+//                }
                 int i;
+                for (i = 0; i < board[move].length && board[move][i] == Color.WHITE; i++) {
+                    board[move][i] = color;
+                    try { Thread.sleep(200); } catch(Exception ignored) {}
+                    board[move][i] = Color.WHITE;
+                    if (gameDone) return;
+                }
+                if (gameDone) return;
+                board[move][i - 1] = color;
+                checkConnect(move, i - 1);
+
+                //AI
+                color = players[1];
+                int[][] board_arr = Board.colorBoardTo2DIntArr();
+                move = Board.ai.playBoard(board_arr);
+
                 for (i = 0; i < board[move].length && board[move][i] == Color.WHITE; i++) {
                     board[move][i] = color;
                     try { Thread.sleep(200); } catch(Exception ignored) {}
@@ -167,7 +183,7 @@ class Connect4 extends JPanel implements ActionListener, MouseListener, MouseMot
             }).start();
             try { Thread.sleep(100); } catch(Exception ignored) {}
             if (gameDone) return;
-            turn = (turn + 1) % players.length;
+//            turn = (turn + 1) % players.length;
         }
 
         public static void checkConnect(int x, int y) {
